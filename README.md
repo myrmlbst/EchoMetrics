@@ -8,7 +8,7 @@ Unfortunately, considering the fact that the data provided by Beats by Dre canno
 ## Tools and Technologies
 - **Backend and Machine Learning:** Python, Matplotlib, Scikit-learn, Pandas, Kaggle (Dataset)
 - **Frontend:** Python, Flask, JavaScript, HTML
-- **Deploymeny:** Docker, Render.com
+- **Deployment:** Docker, Render.com
 
 ## Directory Structure
 ```
