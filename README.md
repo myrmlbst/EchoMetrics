@@ -12,7 +12,7 @@ Unfortunately, considering the fact that the data provided by Beats by Dre canno
 
 ## Directory Structure
 ```
-src/
+EchoMetrics
 ├── data/
 │   ├── loader.py                # kaggle data loading
 │   └── processor.py             # feature engineering
@@ -23,7 +23,21 @@ src/
 │   └── logger.py                # logging system
 ├── visualization/
 │   └── plotter.py               # charts n graphs
-└── main.py                      # project runs from here
+├── web
+│   ├── static                   # stylization tools and configs
+│   └── templates                # main html page
+│   └── processor.py             # feature engineering
+│ 
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+│ 
+├── .gitignore
+├── sales_predictions.csv
+├── config.py                    # plot output configurations
+├── requirements.txt             # external dependencies needed to run the models and webpage
+├── app.py                       # flask webpage runs from here
+└── main.py                      # ml models (in terminal) run from here
 ```
 
 ## Project Installation
@@ -32,7 +46,7 @@ src/
 **To run the project using Docker:**
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/myrmlbst/EchoMetrics
 cd EchoMetrics
 
 # Build and run with Docker Compose
@@ -47,7 +61,7 @@ docker run -p 8080:8080 echometrics
 **To run the project on your local machine:**
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/myrmlbst/EchoMetrics
 cd EchoMetrics
 
 # Install dependencies
