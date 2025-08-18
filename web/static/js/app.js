@@ -56,12 +56,8 @@ class EchoMetricsDashboard {
                 resultDiv.style.display = 'block';
                 resultDiv.classList.add('prediction-success');
                 
-                setTimeout(() => {
-                    resultDiv.classList.remove('prediction-success');
-                }, 500);
-            } else {
-                this.showError('Prediction failed: ' + result.error);
-            }
+                setTimeout(() => { resultDiv.classList.remove('prediction-success'); }, 500);
+            } else this.showError('Prediction failed: ' + result.error);
         } catch (error) {
             this.showError('Network error: ' + error.message);
         } finally {
@@ -98,7 +94,7 @@ class EchoMetricsDashboard {
                 result.scenarios.forEach((scenario, index) => {
                     const row = document.createElement('tr');
                     
-                    // Determine potential level
+                    // determine potential level
                     let potentialClass = 'text-success';
                     let potentialIcon = 'fas fa-arrow-up';
                     if (scenario.predicted_sales < 800) {
@@ -127,10 +123,7 @@ class EchoMetricsDashboard {
         }
     }
 
-    loadCharts() {
-        // load initial chart
-        this.loadChart('price_vs_sales');
-    }
+    loadCharts() { this.loadChart('price_vs_sales'); } // load initial chart
 
     async loadChart(chartType) {
         const imgElement = document.getElementById(`${chartType.replace('_vs_', '-')}-chart-img`);
@@ -148,9 +141,7 @@ class EchoMetricsDashboard {
             if (result.status === 'success') {
                 imgElement.src = result.chart;
                 imgElement.style.display = 'block';
-            } else {
-                console.error('Chart loading failed:', result.error);
-            }
+            } else console.error('Chart loading failed:', result.error);
         } catch (error) {
             console.error('Failed to load chart:', error);
         } finally {
@@ -169,8 +160,7 @@ class EchoMetricsDashboard {
         
         document.querySelector('.container').insertBefore(alertDiv, document.querySelector('.row'));
         
-        // auto-dismiss after 5 seconds
-        setTimeout(() => {
+        setTimeout(() => { // auto-dismiss after 5 seconds
             if (alertDiv.parentNode) {
                 alertDiv.remove();
             }
