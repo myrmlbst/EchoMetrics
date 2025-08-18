@@ -6,8 +6,8 @@ In this project, I use my knowledge (both from my internship and my personal dev
 Unfortunately, considering the fact that the data provided by Beats by Dre cannot be shared here, I had to fix the project to use a different dataset that encompasses a broader demographic of consumer goods: general appliances, such as smartphones, laptops, headphones, etc.
 
 ## Tools and Technologies
-- **Backend and Machine Learning:** Python, Matplotlib, Scikit-learn, Pandas, Kaggle (Dataset)
-- **Frontend:** Python, Flask, JavaScript, HTML
+- **Machine Learning Models:** Python, Matplotlib, Scikit-learn, Pandas, Kaggle (Dataset)
+- **Webapp (Frontend/Backend):** Python, Flask, JavaScript, HTML, CSS
 - **Deployment:** Docker, Render.com
 
 ## Directory Structure
