@@ -9,6 +9,12 @@ Unfortunately, considering the fact that the data provided by Beats by Dre canno
 - **Machine Learning Models:** Python, Matplotlib, Scikit-learn, Pandas, Kaggle (Dataset)
 - **Webapp (Frontend/Backend):** Python, Flask, JavaScript, HTML, CSS 
 - **Deployment:** Docker, Render.com
+<div align="center">
+  <img
+      src="https://skillicons.dev/icons?i=python,flask,javascript,html,css,docker,scikitlearn"
+      class="h-14"
+  />
+</div>
 
 ## Directory Structure
 ```

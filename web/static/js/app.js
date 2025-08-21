@@ -161,9 +161,7 @@ class EchoMetricsDashboard {
         document.querySelector('.container').insertBefore(alertDiv, document.querySelector('.row'));
         
         setTimeout(() => { // auto-dismiss after 5 seconds
-            if (alertDiv.parentNode) {
-                alertDiv.remove();
-            }
+            if (alertDiv.parentNode) { alertDiv.remove(); }
         }, 5000);
     }
 
