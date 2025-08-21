@@ -1,5 +1,11 @@
 class EchoMetricsDashboard {
     constructor() {
+        // map backend chart types to DOM element IDs
+        this.chartDomMap = {
+            'price_vs_sales': { img: 'price-chart-img', spinner: 'price-spinner' },
+            'category_distribution': { img: 'category-chart-img', spinner: 'category-spinner' },
+            'age_behavior': { img: 'behavior-chart-img', spinner: 'behavior-spinner' }
+        };
         this.initializeEventListeners();
         this.loadAnalytics();
         this.loadScenarios();
@@ -16,8 +22,18 @@ class EchoMetricsDashboard {
         // chart tab switching
         document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
             tab.addEventListener('shown.bs.tab', (e) => {
-                const chartType = e.target.getAttribute('data-bs-target').replace('#', '').replace('-chart', '');
-                this.loadChart(chartType);
+                const targetId = e.target.getAttribute('data-bs-target'); // e.g. #price-chart
+                const id = (targetId || '').replace('#', '');
+                
+                // map tab pane id to backend chart type
+                const map = {
+                    'price-chart': 'price_vs_sales',
+                    'category-chart': 'category_distribution',
+                    'behavior-chart': 'age_behavior'
+                };
+
+                const chartType = map[id];
+                if (chartType) this.loadChart(chartType);
             });
         });
     }
@@ -136,8 +152,9 @@ class EchoMetricsDashboard {
     loadCharts() { this.loadChart('price_vs_sales'); } // load initial chart
 
     async loadChart(chartType) {
-        const imgElement = document.getElementById(`${chartType.replace('_vs_', '-')}-chart-img`);
-        const spinner = document.getElementById(`${chartType.replace('_vs_', '-')}-spinner`);
+        const dom = this.chartDomMap[chartType] || {};
+        const imgElement = document.getElementById(dom.img);
+        const spinner = document.getElementById(dom.spinner);
 
         if (!imgElement || !spinner) return;
 

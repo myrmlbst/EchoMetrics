@@ -31,7 +31,7 @@ class SalesVisualizer:
         plt.tight_layout()
         plt.show()
     
-    def _plot_category_boxplot(self, df, ax):
+    def _plot_category_boxplot(self, df, ax): # FE
         df.boxplot(column='sales_potential', by='ProductCategory', ax=ax)
         ax.set_title('Sales Potential by Category')
         ax.set_xlabel('Product Category')
@@ -39,7 +39,7 @@ class SalesVisualizer:
         ax.tick_params(axis='x', rotation=45)
         plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
     
-    def _plot_price_vs_sales(self, df, ax):
+    def _plot_price_vs_sales(self, df, ax): # FE
         scatter = ax.scatter(
             df['ProductPrice'], 
             df['sales_potential'], 
@@ -65,7 +65,7 @@ class SalesVisualizer:
         ax.set_title(f'Model Performance (R² = {best_result["R2"]:.3f})')
         ax.grid(True, alpha=VIZ_CONFIG['grid_alpha'])
     
-    def _plot_customer_behavior(self, df, ax):
+    def _plot_customer_behavior(self, df, ax): # FE
         scatter = ax.scatter(
             df['CustomerAge'], 
             df['behavior_score'], 
