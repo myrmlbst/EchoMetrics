@@ -69,7 +69,13 @@ def predict_sales(): # api endpoint for sales prediction
         # feature engineering
         input_data = data_processor.create_sales_target(input_data)
         
-        # for categorical features, use mode values from training data
+        # provide default categorical values required by encoder
+        # NOTE: encode_categorical_features expects raw columns 'ProductCategory' and 'ProductBrand'
+        # so they must be set before encoding to avoid KeyError
+        input_data['ProductCategory'] = 'Predicted'
+        input_data['ProductBrand'] = 'Predicted'
+        
+        # optional: defaults for encoded columns (will be recomputed by encoder)
         input_data['category_encoded'] = 0  # default category
         input_data['brand_encoded'] = 0     # default brand
         

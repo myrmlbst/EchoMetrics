@@ -11,7 +11,7 @@ class DataProcessor:
     def __init__(self):
         self.feature_columns = []
         
-    def create_sales_target(self, df):
+    def create_sales_target(self, df): # webpage first prediction
         df = df.copy()
         df['sales_potential'] = (
             df['ProductPrice'] * 

@@ -29,13 +29,19 @@ class EchoMetricsDashboard {
 
         // get form data
         const formData = {
-            price: document.getElementById('price').value,
-            age: document.getElementById('age').value,
-            gender: document.getElementById('gender').value,
-            frequency: document.getElementById('frequency').value,
-            satisfaction: document.getElementById('satisfaction').value,
-            intent: document.getElementById('intent').value
+            price: parseFloat(document.getElementById('price').value),
+            age: parseInt(document.getElementById('age').value, 10),
+            gender: parseInt(document.getElementById('gender').value, 10),
+            frequency: parseInt(document.getElementById('frequency').value, 10),
+            satisfaction: parseInt(document.getElementById('satisfaction').value, 10),
+            intent: parseInt(document.getElementById('intent').value, 10)
         };
+
+        // basic validation to avoid 400s
+        if (Object.values(formData).some(v => Number.isNaN(v))) {
+            this.showError('Please fill all fields with valid numeric values.');
+            return;
+        }
 
         form.classList.add('loading');
         resultDiv.style.display = 'none';
@@ -49,7 +55,11 @@ class EchoMetricsDashboard {
                 body: JSON.stringify(formData)
             });
 
-            const result = await response.json();
+            const result = await response.json().catch(() => ({ status: 'error', error: 'Invalid JSON response' }));
+
+            if (!response.ok) {
+                throw new Error(result?.error || `Request failed with status ${response.status}`);
+            }
 
             if (result.status === 'success') {
                 valueDiv.textContent = `$${result.prediction.toLocaleString()}`;
@@ -57,9 +67,9 @@ class EchoMetricsDashboard {
                 resultDiv.classList.add('prediction-success');
                 
                 setTimeout(() => { resultDiv.classList.remove('prediction-success'); }, 500);
-            } else this.showError('Prediction failed: ' + result.error);
+            } else this.showError('Prediction failed: ' + (result.error || 'Unknown error'));
         } catch (error) {
-            this.showError('Network error: ' + error.message);
+            this.showError(error?.message || 'Network error while making prediction');
         } finally {
             form.classList.remove('loading');
         }
@@ -157,8 +167,18 @@ class EchoMetricsDashboard {
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         `;
-        
-        document.querySelector('.container').insertBefore(alertDiv, document.querySelector('.row'));
+
+        const container = document.querySelector('.container');
+        if (container) {
+            const firstChild = container.firstElementChild;
+            if (firstChild) {
+                container.insertBefore(alertDiv, firstChild);
+            } else {
+                container.appendChild(alertDiv);
+            }
+        } else {
+            document.body.prepend(alertDiv);
+        }
         
         setTimeout(() => { // auto-dismiss after 5 seconds
             if (alertDiv.parentNode) { alertDiv.remove(); }
