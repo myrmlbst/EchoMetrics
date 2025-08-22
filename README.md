@@ -37,6 +37,8 @@ EchoMetrics
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .dockerignore
+│
+├── LICENSE                      # feel free to contribute!
 │ 
 ├── .gitignore
 ├── sales_predictions.csv
