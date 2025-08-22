@@ -12,6 +12,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
 import base64
+import joblib
+from pathlib import Path
 
 from data.loader import DataLoader
 from data.processor import DataProcessor
@@ -28,23 +30,42 @@ feature_columns = []
 
 def initialize_system():
     global trained_model, data_processor, processed_data, feature_columns
-    
     print("Initializing EchoMetrics system...")
-    
+
+    # load and process data (needed for analytics/scenarios regardless of training)
     data_loader = DataLoader()
     raw_data = data_loader.load_data()
-    
     if raw_data is None:
         raise ValueError("Failed to load dataset")
-    
-    # process data
+
     data_processor = DataProcessor()
-    processed_data, feature_columns = data_processor.process_data(raw_data)
-    # train model
+    processed_data, computed_features = data_processor.process_data(raw_data)
+
+    # try to load existing model bundle to avoid retraining
+    bundle_path = Path('artifacts') / 'model_bundle.joblib'
+    if bundle_path.exists():
+        print(f"Loading model bundle from '{bundle_path}'...")
+        bundle = joblib.load(bundle_path)
+        trained_model = bundle['model']
+        feature_columns = bundle.get('feature_columns', computed_features)
+        print("Model loaded successfully. Skipping retraining.")
+        return None
+
+    # fallback: train and then persist bundle
     predictor = SalesPredictor()
-    trained_model = predictor.train_models(processed_data, feature_columns)
-    
-    print("System initialized successfully!")
+    trained_model = predictor.train_models(processed_data, computed_features)
+    feature_columns = computed_features
+
+    artifacts_dir = Path('artifacts')
+    artifacts_dir.mkdir(parents=True, exist_ok=True)
+    bundle = {
+        'model': trained_model,
+        'feature_columns': feature_columns,
+        'best_model_name': getattr(predictor, 'best_model_name', None),
+        'metrics': predictor.get_model_performance() if hasattr(predictor, 'get_model_performance') else None,
+    }
+    joblib.dump(bundle, artifacts_dir / 'model_bundle.joblib')
+    print("System initialized and model bundle saved.")
     return predictor
 
 @app.route('/')

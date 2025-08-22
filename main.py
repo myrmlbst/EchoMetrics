@@ -9,6 +9,8 @@ from models.predictor import SalesPredictor
 from models.scenario_generator import ScenarioGenerator
 from visualization.plotter import SalesVisualizer
 from utils.logger import EchoLogger
+import joblib
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
 
@@ -97,6 +99,19 @@ class EchoMetrics:
         # display top predictions
         print(f"\n=== Top 10 Sales Predictions ===")
         print(self.scenario_predictions)
+
+        # persist best model and feature columns for reuse by the web app
+        artifacts_dir = Path('artifacts')
+        artifacts_dir.mkdir(parents=True, exist_ok=True)
+        bundle_path = artifacts_dir / 'model_bundle.joblib'
+        bundle = {
+            'model': self.predictor.best_model,
+            'feature_columns': self.feature_columns,
+            'best_model_name': self.predictor.best_model_name,
+            'metrics': {k: {m: v for m, v in self.predictor.results[k].items() if m in ['MAE', 'MSE', 'R2']} for k in self.predictor.results}
+        }
+        joblib.dump(bundle, bundle_path)
+        print(f"Model bundle saved to '{bundle_path}'")
 
 
 def main():
