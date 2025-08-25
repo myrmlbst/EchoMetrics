@@ -37,9 +37,7 @@ fi
 mkdir -p artifacts/models
 mkdir -p artifacts/plots
 
-# run the application
-echo -e "${GREEN}Starting EchoMetrics...${NC}"
-python main.py
-
-echo -e "${GREEN}EchoMetrics has finished running.${NC}"
-echo -e "You can access the web interface at ${GREEN}http://localhost:5000${NC}"
+# run the Flask application
+echo -e "${GREEN}Starting EchoMetrics web server...${NC}
+Access the web interface at ${GREEN}http://localhost:8080${NC}"
+python app.py

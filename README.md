@@ -72,7 +72,7 @@ EchoMetrics
    - Create necessary directories
    - Start the EchoMetrics application
 
-3. Access the web interface at [http://localhost:5000](http://localhost:5000) once the application starts.
+3. Access the web interface at [http://localhost:8080](http://localhost:8080) once the application starts.
 
 ### Running with Docker (Alternative)
 If you prefer using Docker, you can build and run the application using:
