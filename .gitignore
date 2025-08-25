@@ -5,3 +5,4 @@ __pycache__/
 TODO.md
 artifacts/
 *.joblib
+venv/*

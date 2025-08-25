@@ -45,46 +45,40 @@ EchoMetrics
 ├── config.py                    # plot output configurations
 ├── requirements.txt             # external dependencies needed to run the models and webpage
 ├── app.py                       # flask webpage runs from here
-└── main.py                      # ml models (in terminal) run from here
+├── main.py                      # ml models (in terminal) run from here
+└── run.sh                       # convenience script to run the application
 ```
 
-## Project Installation
+## Getting Started
 
-### Option 1: Docker (Recommended)
-**To run the project using Docker:**
+### Prerequisites
+- Python 3.x
+- pip (Python package installer)
+
+### Running the Application
+1. Make the run script executable (only needed once):
+   ```bash
+   chmod +x run.sh
+   ```
+
+2. Run the application:
+   ```bash
+   ./run.sh
+   ```
+
+   This will:
+   - Create a Python virtual environment (if it doesn't exist)
+   - Install all required dependencies
+   - Create necessary directories
+   - Start the EchoMetrics application
+
+3. Access the web interface at [http://localhost:5000](http://localhost:5000) once the application starts.
+
+### Running with Docker (Alternative)
+If you prefer using Docker, you can build and run the application using:
 ```bash
-# Clone the repository
-git clone https://github.com/myrmlbst/EchoMetrics
-cd EchoMetrics
-
-# Build and run with Docker Compose
 docker-compose up --build
-
-# Or build and run manually
-docker build -t echometrics .
-docker run -p 8080:8080 echometrics
 ```
-
-### Option 2: Local Installation
-**To run the project on your local machine:**
-```bash
-# Clone the repository
-git clone https://github.com/myrmlbst/EchoMetrics
-cd EchoMetrics
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the command-line version
-python3 main.py
-
-# Run the web application
-python3 app.py
-```
-
-**To view the project:**
-- **Web Interface:** Navigate to `http://localhost:8080` in your browser
-- **Command Line:** Run `python3 main.py` for the prediction pipeline
 
 ## Dataset
 The dataset I used is available on Kaggle through [this link](https://www.kaggle.com/datasets/rabieelkharoua/consumer-electronics-sales-dataset?resource=download).
