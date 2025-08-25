@@ -9,7 +9,9 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav 
+        class="navbar navbar-dark bg-primary" 
+        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-chart-line me-2"></i>
@@ -21,7 +23,7 @@
     <div class="container mt-4">
         <!-- Dashboard Header -->
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col-12" style="color: rgb(196, 182, 232);">
                 <h1 class="display-6">Sales Prediction Dashboard</h1>
                 <p class="lead">Predict sales potential based on customer behavior and product characteristics</p>
             </div>
@@ -31,7 +33,7 @@
         <div class="row mb-4" id="analytics-cards">
             <div class="col-md-3">
                 <div class="card bg-primary text-white">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(110, 108, 226); border-radius: 15px;">
                         <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="card-title">Total Records</h6>
@@ -46,7 +48,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card bg-success text-white">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(110, 108, 226); border-radius: 15px;">
                         <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="card-title">Avg Sales Potential</h6>
@@ -61,7 +63,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card bg-warning text-white">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(110, 108, 226); border-radius: 15px;">
                         <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="card-title">Max Sales Potential</h6>
@@ -76,7 +78,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card bg-info text-white">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(110, 108, 226); border-radius: 15px;">
                         <div class="d-flex justify-content-between">
                             <div>
                                 <h6 class="card-title">Model Accuracy</h6>

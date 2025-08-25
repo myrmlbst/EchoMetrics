@@ -1,5 +1,5 @@
 body {
-    background-color: #f8f9fa;
+    background-color: #010128;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -64,7 +64,7 @@ body {
 .nav-tabs .nav-link {
     border-radius: 10px 10px 0 0;
     border: none;
-    color: #667eea;
+    color: #7183d2;
     font-weight: 600;
 }
 
@@ -102,6 +102,7 @@ body {
     .card-body {
         padding: 1rem;
     }
+    
 }
 
 /* chart containers */
