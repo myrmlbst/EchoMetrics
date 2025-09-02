@@ -25,7 +25,7 @@ BEHAVIOR_WEIGHTS = {
 }
 
 VIZ_CONFIG = {
-    'figure_size': (15, 12),
+    'figure_size': (15, 7),
     'color_palette': 'viridis',
     'alpha': 0.6,
     'grid_alpha': 0.3
