@@ -100,9 +100,52 @@ body {
     }
     
     .card-body {
-        padding: 1rem;
+        padding: 1.25rem;
     }
     
+    /* Add spacing between cards on mobile */
+    .col-md-3, .col-lg-4, .col-lg-8 {
+        margin-bottom: 1rem;
+    }
+    
+    /* Add spacing between form elements */
+    .mb-3 {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Add padding to the main container */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 769px) and (max-width: 991px) {
+    /* Add spacing between cards */
+    .col-md-3, .col-lg-4, .col-lg-8 {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Add padding to the main container */
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 992px) {
+    /* Add bottom margin to the sales analytics section */
+    .col-lg-8 {
+        margin-bottom: 3rem;
+    }
+    
+    /* Add padding to the top sales opportunities section */
+    .row.mb-4 {
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
 }
 
 /* chart containers */
