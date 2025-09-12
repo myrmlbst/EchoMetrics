@@ -1,7 +1,7 @@
 # EchoMetrics
 EchoMetrics is a machine learning model I developed, complimentary to my quantitative and qualitative data analytics externship at Beats by Dre, where I learned how to analyze data in a business setting and turn raw, unorganized data into insights that helps businesses know their current performance with customers and consumers, and plan how to expand and market themselves accordingly.
 
-In this project, I use my knowledge (both from my internship and my personal development experience) to forecast sales of consumer electronics by having a machine learning model analyze historical sales datasets and make predictions based on it.
+In this project, I use my knowledge (both from my externship and my personal development experience) to forecast sales of consumer electronics by having a machine learning model analyze historical sales datasets and make predictions based on it.
 
 Unfortunately, considering the fact that the data provided by Beats by Dre cannot be shared here, I had to fix the project to use a different dataset that encompasses a broader demographic of consumer goods: general appliances, such as smartphones, laptops, headphones, etc.
 
